@@ -77,7 +77,8 @@ local.properties
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-.idea
+.idea/**/7. MOCK PROJECT.iml
+.idea/**
 
 # AWS User-specific
 .idea/**/aws.xml
