@@ -13,11 +13,11 @@ public class OrderDetail extends BaseEntity{
 	@Column
 	private int price;
 	@ManyToOne
-	@JoinColumn(name = "orderId", referencedColumnName = "id")
+	@JoinColumn(name = "order_id", referencedColumnName = "id")
 	private Order order;
 	@OneToOne(mappedBy = "orderDetail")
 	private Feedback feedback;
 	@ManyToOne
-	@JoinColumn(name = "courseId", referencedColumnName = "id")
+	@JoinColumn(name = "course_id", referencedColumnName = "id")
 	private Course course;
 }

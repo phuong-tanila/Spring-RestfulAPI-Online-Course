@@ -17,7 +17,7 @@ public class Feedback extends BaseEntity {
 	@Column
 	private int rating;
 	@OneToOne (cascade = CascadeType.ALL)
-	@JoinColumn(name = "orderDetail_id")
+	@JoinColumn(name = "order_detail_id")
 	private OrderDetail orderDetail;
 
 }

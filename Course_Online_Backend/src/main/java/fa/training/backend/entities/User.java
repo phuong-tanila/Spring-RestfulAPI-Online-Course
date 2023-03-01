@@ -8,11 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
-
 @Entity
 @Table(name = "users")
-public class Users extends BaseEntity{
+public class User extends BaseEntity{
 	@Column
 	private String password;
 	@Column
@@ -26,8 +24,8 @@ public class Users extends BaseEntity{
 	@Column
 	private String description;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "createBy")
 	private Set<Course> courses;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Order> orders;
 }
