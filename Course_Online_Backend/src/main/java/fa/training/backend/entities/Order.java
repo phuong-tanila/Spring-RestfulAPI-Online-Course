@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,7 +27,7 @@ public class Order extends BaseEntity{
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private Users users;
+	private User user;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
 	private Set<OrderDetail> orderDetails;
 	

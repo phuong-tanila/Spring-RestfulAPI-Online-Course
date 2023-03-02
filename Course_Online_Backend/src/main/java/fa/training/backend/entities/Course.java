@@ -13,8 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import net.bytebuddy.utility.nullability.MaybeNull;
-
 @Entity
 @Table(name = "course")
 public class Course extends BaseEntity {
@@ -42,16 +40,16 @@ public class Course extends BaseEntity {
 	private Date lastUpdateDate;
 
 	@ManyToOne
-	@JoinColumn(name = "createBy", referencedColumnName = "id")
-	private Users users;
+	@JoinColumn(name = "create_by", referencedColumnName = "id")
+	private User createBy;
 	@ManyToOne
 	@JoinColumn(name = "teacher_id", referencedColumnName = "id")
-	private Users teacher;
+	private User teacher;
 	@ManyToOne
-	@JoinColumn(name = "lastUpdateUser", referencedColumnName = "id")
-	private Users admin;
+	@JoinColumn(name = "last_update_user", referencedColumnName = "id")
+	private User lastUpdateUser;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-	private Set<OrderDetail> orderDetail;
+	private Set<OrderDetail> orderDetails;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "CategoryCourse", joinColumns = {@JoinColumn(referencedColumnName = "id")},
 	inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
