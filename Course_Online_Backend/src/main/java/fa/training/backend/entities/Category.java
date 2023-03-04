@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "category")
 public class Category extends BaseEntity{
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String categoryName;
 	@ManyToMany(mappedBy = "categories")
 	private Set<Course> courses;

@@ -1,23 +1,22 @@
 package fa.training.backend.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "feedback")
 public class Feedback extends BaseEntity {
-	@Column
-	private int comment;
+	@Column(length = Integer.MAX_VALUE)
+	private String comment;
 	@Column
 	private int rating;
 	@OneToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_detail_id")
 	private OrderDetail orderDetail;
+	@ManyToOne
+	@JoinColumn(name = "course_id", referencedColumnName = "id")
+	private Course  course;
 
+	@ManyToOne
+	@JoinColumn(name= "user_id", referencedColumnName = "id")
+	private User user;
 }

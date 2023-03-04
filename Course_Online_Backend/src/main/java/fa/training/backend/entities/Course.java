@@ -16,22 +16,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "course")
 public class Course extends BaseEntity {
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String courseName;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String description;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String objective;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String suitable;
 	@Column
 	private int slot;
 	@Column
 	private int tuitionFee;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String imageUrl;
 	@Column
-	private Date starDate;
+	private Date startDate;
 	@Column
 	private Date endDate;
 	@Column
@@ -54,4 +54,6 @@ public class Course extends BaseEntity {
 	@JoinTable(name = "CategoryCourse", joinColumns = {@JoinColumn(referencedColumnName = "id")},
 	inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
 	private Set<Category> categories;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+	private Set<Feedback> feedbacks;
 }

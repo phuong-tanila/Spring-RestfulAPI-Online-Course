@@ -16,13 +16,13 @@ import javax.persistence.Table;
 public class Order extends BaseEntity{
 	@Column
 	private Date buyDate;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String paymentMethod;
 	@Column
 	private Boolean paymentStatus;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String coupon;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String paymentId;
 	
 	@ManyToOne

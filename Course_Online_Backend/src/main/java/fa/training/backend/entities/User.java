@@ -13,19 +13,22 @@ import javax.persistence.Table;
 public class User extends BaseEntity{
 	@Column
 	private String password;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String fullname;
 	@Column
 	private String phone;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String email;
 	@Column
 	private String role;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String description;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "createBy")
 	private Set<Course> courses;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Order> orders;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	private Set<Feedback> feedbacks;
 }
