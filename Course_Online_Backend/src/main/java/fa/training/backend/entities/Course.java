@@ -13,27 +13,38 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import net.bytebuddy.utility.nullability.MaybeNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "course")
 public class Course extends BaseEntity {
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String courseName;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String description;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String objective;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String suitable;
 	@Column
 	private int slot;
 	@Column
 	private int tuitionFee;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String imageUrl;
 	@Column
-	private Date starDate;
+	private Date createDate;
+	@Column
+	private Date startDate;
 	@Column
 	private Date endDate;
 	@Column
@@ -42,18 +53,22 @@ public class Course extends BaseEntity {
 	private Date lastUpdateDate;
 
 	@ManyToOne
-	@JoinColumn(name = "createBy", referencedColumnName = "id")
-	private Users users;
+	@JoinColumn(name = "create_by", referencedColumnName = "id")
+	private User createBy;
 	@ManyToOne
 	@JoinColumn(name = "teacher_id", referencedColumnName = "id")
-	private Users teacher;
+	private User teacher;
 	@ManyToOne
-	@JoinColumn(name = "lastUpdateUser", referencedColumnName = "id")
-	private Users admin;
+	@JoinColumn(name = "last_update_user", referencedColumnName = "id")
+	private User lastUpdateUser;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-	private Set<OrderDetail> orderDetail;
+	private Set<OrderDetail> orderDetails;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "CategoryCourse", joinColumns = {@JoinColumn(referencedColumnName = "id")},
 	inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
 	private Set<Category> categories;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+	private Set<Feedback> feedbacks;
+	
+	
 }

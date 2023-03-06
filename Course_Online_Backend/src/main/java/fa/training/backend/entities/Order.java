@@ -7,28 +7,38 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "orders")
 public class Order extends BaseEntity{
 	@Column
 	private Date buyDate;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String paymentMethod;
 	@Column
 	private Boolean paymentStatus;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String coupon;
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String paymentId;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private Users users;
+	private User user;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
 	private Set<OrderDetail> orderDetails;
 	

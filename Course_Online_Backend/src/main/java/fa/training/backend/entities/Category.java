@@ -7,10 +7,21 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "category")
 public class Category extends BaseEntity{
-	@Column
+	@Column(length = Integer.MAX_VALUE)
 	private String categoryName;
 	@ManyToMany(mappedBy = "categories")
 	private Set<Course> courses;
