@@ -8,6 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity{
@@ -28,7 +39,6 @@ public class User extends BaseEntity{
 	private Set<Course> courses;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Order> orders;
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private Set<Feedback> feedbacks;
 }

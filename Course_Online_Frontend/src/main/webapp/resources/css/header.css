@@ -62,9 +62,8 @@ button:hover {
 }
 
 img.avatar {
-  width: 20rem;
-  height: 20rem;
-  border-radius: 50%;
+  width: 22rem;
+  height: 10rem;
 }
 
 .container {

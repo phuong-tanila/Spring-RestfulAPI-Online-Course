@@ -13,6 +13,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "course")
 public class Course extends BaseEntity {
@@ -30,6 +41,8 @@ public class Course extends BaseEntity {
 	private int tuitionFee;
 	@Column(length = Integer.MAX_VALUE)
 	private String imageUrl;
+	@Column
+	private Date createDate;
 	@Column
 	private Date startDate;
 	@Column
@@ -56,4 +69,6 @@ public class Course extends BaseEntity {
 	private Set<Category> categories;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
 	private Set<Feedback> feedbacks;
+	
+	
 }
