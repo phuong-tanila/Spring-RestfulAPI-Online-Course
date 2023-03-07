@@ -22,7 +22,7 @@ import lombok.ToString;
 @Table(name = "category")
 public class Category extends BaseEntity{
 	@Column(length = Integer.MAX_VALUE)
-	private String categoryName;
+	public String categoryName;
 	@ManyToMany(mappedBy = "categories")
-	private Set<Course> courses;
+	public Set<Course> courses;
 }

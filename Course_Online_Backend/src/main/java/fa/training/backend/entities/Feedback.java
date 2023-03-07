@@ -17,17 +17,17 @@ import lombok.ToString;
 @Table(name = "feedback")
 public class Feedback extends BaseEntity {
 	@Column(length = Integer.MAX_VALUE)
-	private String comment;
+	public String comment;
 	@Column
-	private int rating;
+	public int rating;
 	@OneToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_detail_id")
-	private OrderDetail orderDetail;
+	public OrderDetail orderDetail;
 	@ManyToOne
 	@JoinColumn(name = "course_id", referencedColumnName = "id")
-	private Course  course;
+	public Course  course;
 
 	@ManyToOne
 	@JoinColumn(name= "user_id", referencedColumnName = "id")
-	private User user;
+	public User user;
 }

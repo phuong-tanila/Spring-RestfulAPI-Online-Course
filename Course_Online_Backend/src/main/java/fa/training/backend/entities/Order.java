@@ -26,21 +26,21 @@ import lombok.ToString;
 @Table(name = "orders")
 public class Order extends BaseEntity{
 	@Column
-	private Date buyDate;
+	public Date buyDate;
 	@Column(length = Integer.MAX_VALUE)
-	private String paymentMethod;
+	public String paymentMethod;
 	@Column
-	private Boolean paymentStatus;
+	public Boolean paymentStatus;
 	@Column(length = Integer.MAX_VALUE)
-	private String coupon;
+	public String coupon;
 	@Column(length = Integer.MAX_VALUE)
-	private String paymentId;
+	public String paymentId;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private User user;
+	public User user;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-	private Set<OrderDetail> orderDetails;
+	public Set<OrderDetail> orderDetails;
 	
 	
 

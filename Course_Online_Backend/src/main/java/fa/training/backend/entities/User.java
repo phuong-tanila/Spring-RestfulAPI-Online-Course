@@ -23,22 +23,22 @@ import lombok.ToString;
 @Table(name = "users")
 public class User extends BaseEntity{
 	@Column
-	private String password;
+	public String password;
 	@Column(length = Integer.MAX_VALUE)
-	private String fullname;
+	public String fullname;
 	@Column
-	private String phone;
+	public String phone;
 	@Column(length = Integer.MAX_VALUE)
-	private String email;
+	public String email;
 	@Column
-	private String role;
+	public String role;
 	@Column(length = Integer.MAX_VALUE)
-	private String description;
+	public String description;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "createBy")
-	private Set<Course> courses;
+	public Set<Course> courses;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	private Set<Order> orders;
+	public Set<Order> orders;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	private Set<Feedback> feedbacks;
+	public Set<Feedback> feedbacks;
 }

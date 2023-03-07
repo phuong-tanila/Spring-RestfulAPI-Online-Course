@@ -28,47 +28,47 @@ import lombok.ToString;
 @Table(name = "course")
 public class Course extends BaseEntity {
 	@Column(length = Integer.MAX_VALUE)
-	private String courseName;
+	public String courseName;
 	@Column(length = Integer.MAX_VALUE)
-	private String description;
+	public String description;
 	@Column(length = Integer.MAX_VALUE)
-	private String objective;
+	public String objective;
 	@Column(length = Integer.MAX_VALUE)
-	private String suitable;
+	public String suitable;
 	@Column
-	private int slot;
+	public int slot;
 	@Column
-	private int tuitionFee;
+	public int tuitionFee;
 	@Column(length = Integer.MAX_VALUE)
-	private String imageUrl;
+	public String imageUrl;
 	@Column
-	private Date createDate;
+	public Date createDate;
 	@Column
-	private Date startDate;
+	public Date startDate;
 	@Column
-	private Date endDate;
+	public Date endDate;
 	@Column
-	private boolean status;
+	public boolean status;
 	@Column
-	private Date lastUpdateDate;
+	public Date lastUpdateDate;
 
 	@ManyToOne
 	@JoinColumn(name = "create_by", referencedColumnName = "id")
-	private User createBy;
+	public User createBy;
 	@ManyToOne
 	@JoinColumn(name = "teacher_id", referencedColumnName = "id")
-	private User teacher;
+	public User teacher;
 	@ManyToOne
 	@JoinColumn(name = "last_update_user", referencedColumnName = "id")
-	private User lastUpdateUser;
+	public User lastUpdateUser;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-	private Set<OrderDetail> orderDetails;
+	public Set<OrderDetail> orderDetails;
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "CategoryCourse", joinColumns = {@JoinColumn(referencedColumnName = "id")},
 	inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
-	private Set<Category> categories;
+	public Set<Category> categories;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-	private Set<Feedback> feedbacks;
+	public Set<Feedback> feedbacks;
 	
 	
 }

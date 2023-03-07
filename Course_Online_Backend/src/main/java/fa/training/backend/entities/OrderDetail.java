@@ -22,13 +22,13 @@ import lombok.ToString;
 @Table(name = "order_detail")
 public class OrderDetail extends BaseEntity{
 	@Column
-	private int price;
+	public int price;
 	@ManyToOne
 	@JoinColumn(name = "order_id", referencedColumnName = "id")
-	private Order order;
+	public Order order;
 	@OneToOne(mappedBy = "orderDetail")
-	private Feedback feedback;
+	public Feedback feedback;
 	@ManyToOne
 	@JoinColumn(name = "course_id", referencedColumnName = "id")
-	private Course course;
+	public Course course;
 }
