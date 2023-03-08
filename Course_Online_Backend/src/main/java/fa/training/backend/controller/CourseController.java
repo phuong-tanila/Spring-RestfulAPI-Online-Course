@@ -1,9 +1,12 @@
 package fa.training.backend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,19 +28,18 @@ import fa.training.backend.entities.Course;
 import fa.training.backend.exception.RecordNotFoundException;
 import fa.training.backend.services.CategoryService;
 import fa.training.backend.services.CourseService;
+import org.springframework.http.MediaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @RestController
-
+//@RequestMapping(path="/JSON", produces="application/json")
 public class CourseController {
 
 	@Autowired
 	public CourseService courseService;
 	@Autowired
 	public CategoryService categoryService;
-//	@GetMapping("/courses")
-//	public List<Course> getAllCourses() {
-//		return courseService.findAll();
-//	}
 
 //	@GetMapping("/courses/{id}")
 //	public Course getCourseById(@PathVariable(value = "id") int id) {
@@ -61,16 +63,16 @@ public class CourseController {
 
         return new ResponseEntity<List<Course>>(listCourses, new HttpHeaders(), HttpStatus.OK);
     }
-	@GetMapping("/courses/sortbyrating")
-    public ResponseEntity<List<Course>> sortByRating(
-                        @RequestParam(defaultValue = "0") Integer pageNo,
-                        @RequestParam(defaultValue = "5") Integer pageSize,
-                        @RequestParam(defaultValue = "rating") String sortBy)
-    {
-        List<Course> listCourses = courseService.sortCoursesByRating(pageNo, pageSize, sortBy);
-
-        return new ResponseEntity<List<Course>>(listCourses, new HttpHeaders(), HttpStatus.OK);
-    }
+//	@GetMapping("/courses/sortbyrating")
+//    public ResponseEntity<List<Course>> sortByRating(
+//                        @RequestParam(defaultValue = "0") Integer pageNo,
+//                        @RequestParam(defaultValue = "5") Integer pageSize,
+//                        @RequestParam(defaultValue = "rating") String sortBy)
+//    {
+//        List<Course> listCourses = courseService.sortCoursesByRating(pageNo, pageSize, sortBy);
+//
+//        return new ResponseEntity<List<Course>>(listCourses, new HttpHeaders(), HttpStatus.OK);
+//    }
 	
 	
 //	@GetMapping(value = "/category/{categoryName}")

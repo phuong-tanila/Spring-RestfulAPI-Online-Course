@@ -1,18 +1,14 @@
 package fa.training.backend.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.transaction.Transactional;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,10 +19,18 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
+@JsonSerialize
 @ToString
 @Entity
 @Table(name = "course")
-public class Course extends BaseEntity {
+public class Course implements Serializable {
+//	@Jackson
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	public int id;
+//	@JsonIgnore
 	@Column(length = Integer.MAX_VALUE)
 	public String courseName;
 	@Column(length = Integer.MAX_VALUE)
@@ -61,14 +65,16 @@ public class Course extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "last_update_user", referencedColumnName = "id")
 	public User lastUpdateUser;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course", fetch = FetchType.LAZY)
 	public Set<OrderDetail> orderDetails;
-	@ManyToMany(cascade = CascadeType.ALL)
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "CategoryCourse", joinColumns = {@JoinColumn(referencedColumnName = "id")},
-	inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
+			inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
 	public Set<Category> categories;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course", fetch = FetchType.LAZY)
 	public Set<Feedback> feedbacks;
-	
-	
+
 }

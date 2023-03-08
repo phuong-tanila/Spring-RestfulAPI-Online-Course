@@ -1,13 +1,13 @@
 package fa.training.backend.entities;
 
+import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.transaction.Transactional;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,8 +20,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
+@Transactional
+@JsonSerialize
 @Table(name = "users")
-public class User extends BaseEntity{
+public class User implements Serializable {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	public int id;
+	@JsonIgnore
 	@Column
 	public String password;
 	@Column(length = Integer.MAX_VALUE)
@@ -30,15 +37,22 @@ public class User extends BaseEntity{
 	public String phone;
 	@Column(length = Integer.MAX_VALUE)
 	public String email;
+	@JsonIgnore
 	@Column
 	public String role;
 	@Column(length = Integer.MAX_VALUE)
 	public String description;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "createBy")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "createBy", fetch = FetchType.LAZY)
 	public Set<Course> courses;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher", fetch = FetchType.LAZY)
+	public Set<Course> courses1;
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
 	public Set<Order> orders;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
 	public Set<Feedback> feedbacks;
+
 }

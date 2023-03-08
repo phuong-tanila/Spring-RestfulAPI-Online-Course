@@ -10,9 +10,9 @@ import fa.training.backend.repositories.UserRepository;
 
 @Service
 public class UserService {
-//	@Autowired
-//	UserRepository userRepository;
-//	public List<Users> findAllUser(){
-//		return userRepository.findAllUser();
-//	}
+	@Autowired
+	UserRepository userRepository;
+	public List<User> findAllUser(){
+		return userRepository.findAll();
+	}
 }

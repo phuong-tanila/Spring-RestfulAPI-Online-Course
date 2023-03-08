@@ -21,6 +21,9 @@ import fa.training.backend.repositories.CourseRepository;
 public class CourseService {
 	@Autowired
 	CourseRepository courseRepository;
+	public List<Course> findAll() {
+		 return courseRepository.findAll();
+	}
 
 	public List<Course> getAllCourses(Integer pageNo, Integer pageSize, String sortBy) {
 		Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
