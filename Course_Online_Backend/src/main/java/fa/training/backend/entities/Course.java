@@ -1,18 +1,14 @@
 package fa.training.backend.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.transaction.Transactional;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,52 +19,62 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Transactional
+@JsonSerialize
 @ToString
 @Entity
 @Table(name = "course")
-public class Course extends BaseEntity {
+public class Course implements Serializable {
+//	@Jackson
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	public int id;
+//	@JsonIgnore
 	@Column(length = Integer.MAX_VALUE)
-	private String courseName;
+	public String courseName;
 	@Column(length = Integer.MAX_VALUE)
-	private String description;
+	public String description;
 	@Column(length = Integer.MAX_VALUE)
-	private String objective;
+	public String objective;
 	@Column(length = Integer.MAX_VALUE)
-	private String suitable;
+	public String suitable;
 	@Column
-	private int slot;
+	public int slot;
 	@Column
-	private int tuitionFee;
+	public int tuitionFee;
 	@Column(length = Integer.MAX_VALUE)
-	private String imageUrl;
+	public String imageUrl;
 	@Column
-	private Date createDate;
+	public Date createDate;
 	@Column
-	private Date startDate;
+	public Date startDate;
 	@Column
-	private Date endDate;
+	public Date endDate;
 	@Column
-	private boolean status;
+	public boolean status;
 	@Column
-	private Date lastUpdateDate;
+	public Date lastUpdateDate;
 
 	@ManyToOne
 	@JoinColumn(name = "create_by", referencedColumnName = "id")
-	private User createBy;
+	public User createBy;
 	@ManyToOne
 	@JoinColumn(name = "teacher_id", referencedColumnName = "id")
-	private User teacher;
+	public User teacher;
 	@ManyToOne
 	@JoinColumn(name = "last_update_user", referencedColumnName = "id")
-	private User lastUpdateUser;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-	private Set<OrderDetail> orderDetails;
-	@ManyToMany(cascade = CascadeType.ALL)
+	public User lastUpdateUser;
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course", fetch = FetchType.LAZY)
+	public Set<OrderDetail> orderDetails;
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "CategoryCourse", joinColumns = {@JoinColumn(referencedColumnName = "id")},
-	inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
-	private Set<Category> categories;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-	private Set<Feedback> feedbacks;
-	
-	
+			inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
+	public Set<Category> categories;
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course", fetch = FetchType.LAZY)
+	public Set<Feedback> feedbacks;
+
 }

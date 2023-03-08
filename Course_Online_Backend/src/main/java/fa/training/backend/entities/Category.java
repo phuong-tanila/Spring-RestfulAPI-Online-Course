@@ -2,11 +2,9 @@ package fa.training.backend.entities;
 
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,9 +18,14 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "category")
-public class Category extends BaseEntity{
+public class Category {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	public int id;
 	@Column(length = Integer.MAX_VALUE)
-	private String categoryName;
+	public String categoryName;
+	@JsonIgnore
 	@ManyToMany(mappedBy = "categories")
-	private Set<Course> courses;
+	public Set<Course> courses;
 }

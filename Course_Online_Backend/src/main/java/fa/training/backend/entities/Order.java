@@ -3,13 +3,7 @@ package fa.training.backend.entities;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,23 +18,27 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "orders")
-public class Order extends BaseEntity{
+public class Order{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Date buyDate;
-	@Column(length = Integer.MAX_VALUE)
-	private String paymentMethod;
+	public int id;
 	@Column
-	private Boolean paymentStatus;
+	public Date buyDate;
 	@Column(length = Integer.MAX_VALUE)
-	private String coupon;
+	public String paymentMethod;
+	@Column
+	public Boolean paymentStatus;
 	@Column(length = Integer.MAX_VALUE)
-	private String paymentId;
+	public String coupon;
+	@Column(length = Integer.MAX_VALUE)
+	public String paymentId;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private User user;
+	public User user;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-	private Set<OrderDetail> orderDetails;
+	public Set<OrderDetail> orderDetails;
 	
 	
 
