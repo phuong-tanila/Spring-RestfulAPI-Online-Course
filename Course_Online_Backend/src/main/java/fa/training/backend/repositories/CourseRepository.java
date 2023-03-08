@@ -1,5 +1,7 @@
 package fa.training.backend.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -7,7 +9,7 @@ import fa.training.backend.entities.Course;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Integer> {
-//	public List<Course> findAll();
+	public List<Course> findAll();
 
 //	public Page<Course> findAll(Pageable pageable);
 
