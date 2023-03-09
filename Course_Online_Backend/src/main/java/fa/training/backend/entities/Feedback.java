@@ -2,7 +2,6 @@ package fa.training.backend.entities;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +18,7 @@ import java.util.Date;
 @ToString
 @Entity
 @Table(name = "feedback")
-public class Feedback implements Serializable {
+public class Feedback extends BaseEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column

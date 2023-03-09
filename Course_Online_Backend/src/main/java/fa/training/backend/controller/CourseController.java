@@ -3,6 +3,7 @@ package fa.training.backend.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import fa.training.backend.mapper.CourseMapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -27,17 +28,17 @@ public class CourseController {
 	@Autowired
 	public CategoryService categoryService;
 	@Autowired
-	private MapStructConverter mapStructConverter;
+	private CourseMapperImpl courseMapper;
 	@GetMapping("/courses")
-	public List<CourseModel> getCourseBy() 
+	public List<Course> getCourseBy()
 	{
 		List<CourseModel> modelList = new ArrayList<>();;
 		List<Course> courseList= courseService.findAll();
 		for(Course course : courseList) {
-			CourseModel courseModel = mapStructConverter.sourceToDestination(course);
+			CourseModel courseModel = courseMapper.toModel(course);
 			modelList.add(courseModel);
 		}
-		return modelList;
+		return courseList;
 	}
 	
 //	@GetMapping("/courses/{id}")

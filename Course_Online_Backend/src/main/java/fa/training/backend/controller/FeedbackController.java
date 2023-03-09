@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 public class FeedbackController {
     @Autowired
-    private MapStructConverter mapStructConverter;
+    private MapStructConverter<Feedback, FeedbackModel> mapStructConverter;
     @Autowired
     private FeedbackService feedbackService;
     @GetMapping("/feedbacks/{userId}")
@@ -35,7 +35,7 @@ public class FeedbackController {
     {
         List<Feedback> feedbacks = feedbackService.getAllFeedbacks(userId, pageNo, pageSize, sortBy, direction);
         List<FeedbackModel> feedbackModels = new ArrayList<>();
-        feedbacks.forEach(f -> feedbackModels.add(mapStructConverter.feedbackToDto(f)));
+        feedbacks.forEach(f -> feedbackModels.add(mapStructConverter.toModel(f)));
         return new ResponseEntity<List<FeedbackModel>>(feedbackModels, new HttpHeaders(), HttpStatus.OK);
     }
 }
