@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -27,6 +28,8 @@ public class Feedback implements Serializable {
 	public String comment;
 	@Column
 	public int rating;
+	@Column
+	public Date createAt;
 	@OneToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_detail_id")
 	public OrderDetail orderDetail;
