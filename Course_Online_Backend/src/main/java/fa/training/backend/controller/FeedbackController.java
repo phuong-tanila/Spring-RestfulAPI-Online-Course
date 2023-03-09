@@ -24,16 +24,16 @@ public class FeedbackController {
     private MapStructConverter<Feedback, FeedbackModel> mapStructConverter;
     @Autowired
     private FeedbackService feedbackService;
-    @GetMapping("/feedbacks/{userId}")
+    @GetMapping("/feedbacks/{courseId}")
     public ResponseEntity<List<FeedbackModel>> getAllByUserId(
-            @PathVariable("userId") Integer userId,
+            @PathVariable("courseId") Integer courseId,
             @RequestParam(defaultValue = "0") int pageNo,
             @RequestParam(defaultValue = "5") Integer pageSize,
             @RequestParam(defaultValue = "rating") String sortBy,
             @RequestParam(defaultValue = "desc") String direction
     )
     {
-        List<Feedback> feedbacks = feedbackService.getAllFeedbacks(userId, pageNo, pageSize, sortBy, direction);
+        List<Feedback> feedbacks = feedbackService.getAllFeedbacks(courseId, pageNo, pageSize, sortBy, direction);
         List<FeedbackModel> feedbackModels = new ArrayList<>();
         feedbacks.forEach(f -> feedbackModels.add(mapStructConverter.toModel(f)));
         return new ResponseEntity<List<FeedbackModel>>(feedbackModels, new HttpHeaders(), HttpStatus.OK);

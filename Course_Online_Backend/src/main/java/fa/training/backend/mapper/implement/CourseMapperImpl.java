@@ -1,6 +1,7 @@
-package fa.training.backend.mapper;
+package fa.training.backend.mapper.implement;
 
 import fa.training.backend.entities.Course;
+import fa.training.backend.mapper.MapStructConverter;
 import fa.training.backend.model.CourseModel;
 import org.mapstruct.Mapper;
 

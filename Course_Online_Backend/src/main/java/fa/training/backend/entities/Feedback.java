@@ -18,7 +18,7 @@ import java.util.Date;
 @ToString
 @Entity
 @Table(name = "feedback")
-public class Feedback extends BaseEntity implements Serializable {
+public class Feedback implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column

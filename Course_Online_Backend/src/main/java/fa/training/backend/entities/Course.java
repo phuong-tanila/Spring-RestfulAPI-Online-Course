@@ -20,7 +20,7 @@ import lombok.*;
 @Entity
 @Table(name = "course")
 @EqualsAndHashCode
-public class Course extends BaseEntity implements Serializable {
+public class Course implements Serializable {
 //	@Jackson
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
