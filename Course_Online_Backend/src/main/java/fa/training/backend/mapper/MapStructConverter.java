@@ -1,13 +1,8 @@
 package fa.training.backend.mapper;
 
-import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
 
-import fa.training.backend.entities.Course;
-import fa.training.backend.model.CourseModel;
+public interface MapStructConverter<Entity, Model> {
+    Model toModel(Entity e);
 
-@Mapper(componentModel="spring")
-public interface MapStructConverter {
-	CourseModel sourceToDestination(Course course);
-	Course destinationToSource(CourseModel destination);
+    Entity toEntity(Model o);
 }
