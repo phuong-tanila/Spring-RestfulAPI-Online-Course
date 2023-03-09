@@ -23,9 +23,7 @@ public class CourseController {
 	@Autowired
 	public CourseService courseService;
 	@Autowired
-	public CategoryService categoryService;
-	@Autowired
-	private MapStructConverter mapStructConverter;
+	public CategoryService categoryService
 	@GetMapping("/courses")
 	public List<CourseModel> getCourseBy() 
 	{
