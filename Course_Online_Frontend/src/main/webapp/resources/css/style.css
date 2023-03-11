@@ -42,6 +42,13 @@ h6 {
   color: #002347;
 }
 
+.prev-next{
+  width:30px;
+}
+.prev-next:hover{
+  width:40px;
+}
+
 .list {
   list-style: none;
   margin: 0px;
@@ -112,7 +119,7 @@ button:focus {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .section_gap {
-  padding: 130px 0;
+  padding: 50px 0;
 }
 @media (max-width: 991px) {
   .section_gap {
@@ -142,7 +149,7 @@ button:focus {
 ============================================================================================ */
 .main_title {
   text-align: center;
-  margin-bottom: 85px;
+  margin-bottom: 50px;
 }
 @media (max-width: 991px) {
   .main_title {
@@ -450,7 +457,7 @@ button:focus {
 }
 .home_banner_area .banner_inner .banner_content p {
   font-size: 20px;
-  color: #002347;
+  color: #c0392b;
   font-weight: 500;
 }
 
@@ -877,6 +884,7 @@ button:focus {
 @media (max-width: 991px) {
   .right-contents {
     margin-top: 50px;
+
   }
 }
 .right-contents ul {
@@ -899,16 +907,22 @@ button:focus {
   color: #002347;
   font-weight: 500;
 }
+.right-contents ul li .orr {
+  color: #fdc632;
+  font-weight: 500;
+}
+
 .right-contents .enroll {
   margin-top: 10px;
   width: 100%;
 }
-.right-contents .reviews span,
-.right-contents .reviews .star {
+
+ .reviews span,
+ .reviews .star {
   width: 31%;
   margin-bottom: 10px;
 }
-.right-contents .avg-review {
+ .avg-review {
   background: #04091e;
   text-align: center;
   color: #ffffff;
@@ -916,56 +930,56 @@ button:focus {
   font-weight: 600;
   padding: 20px 0px;
 }
-.right-contents .avg-review span {
+.avg-review span {
   font-size: 18px;
   color: #fdc632;
 }
 @media (max-width: 991px) {
-  .right-contents .avg-review {
+ .avg-review {
     margin-bottom: 20px;
   }
 }
 @media (max-width: 1024px) {
-  .right-contents .single-reviews .thumb {
+ .single-reviews .thumb {
     margin-right: 10px;
   }
 }
-.right-contents .single-reviews h5 {
+ .single-reviews h5 {
   display: inline-flex;
 }
 @media (max-width: 1024px) {
-  .right-contents .single-reviews h5 {
+   .single-reviews h5 {
     display: block;
   }
 }
-.right-contents .single-reviews h5 .star {
+ .single-reviews h5 .star {
   margin-left: 10px;
 }
 @media (max-width: 1024px) {
-  .right-contents .single-reviews h5 .star {
+  .single-reviews h5 .star {
     margin: 10px 0;
   }
 }
-.right-contents .feedeback {
+.feedeback {
   margin-top: 30px;
 }
-.right-contents .feedeback textarea {
+.feedeback textarea {
   resize: none;
   height: 130px;
   background: #f9f9ff;
 }
-.right-contents .feedeback textarea:focus {
+.feedeback textarea:focus {
   box-shadow: none;
 }
-.right-contents .star .checked {
+.star .checked {
   color: #fdc632;
 }
-.right-contents .comments-area {
+.comments-area {
   padding: 0;
   border: 0;
   background: transparent;
 }
-.right-contents .comments-area .star {
+.comments-area .star {
   margin-left: 20px;
 }
 
@@ -3627,11 +3641,9 @@ h6 {
   font-size: 13px;
   font-weight: 500;
   line-height: 48px;
-  border-radius: 5px;
   border: 1px solid transparent;
   outline: none !important;
   text-align: center;
-  text-transform: uppercase;
   cursor: pointer;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
@@ -3640,8 +3652,8 @@ h6 {
 }
 .primary-btn2:hover {
   background: transparent;
-  color: #002347;
-  border: 1px solid #002347;
+  color: #fdc632;
+  border: 1px solid #fdc632;
 }
 
 .white_bg_btn {
